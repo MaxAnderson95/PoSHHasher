@@ -104,19 +104,16 @@ Function Get-Hash {
             #Add one to the HashID
             $HashID++
 
+            
+            #If the Random salt parameter is specified, use the Get-RandomSalt Cmdlet and append the random salt to the end of the string
+            If ($RandomSalt) {
+                $Salt = Get-RandomSalt
+            }
+            
             #If the Salt parameter is not null, take the input string and append the salt to the end of it
             If ($Salt) {
 
                 $SaltUsed = $True
-                $InputString = $InputString + $Salt
-
-            }
-
-            #If the Random salt parameter is specified, use the Get-RandomSalt Cmdlet and append the random salt to the end of the string
-            If ($RandomSalt) {
-
-                $SaltUsed = $True
-                $Salt = Get-RandomSalt
                 $InputString = $InputString + $Salt
 
             }
